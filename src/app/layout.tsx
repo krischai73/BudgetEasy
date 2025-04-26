@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning> {/* Add suppressHydrationWarning here */}
       <body className={`${GeistSans.variable} font-sans antialiased`}> {/* Removed GeistMono variable */}
         {children}
         <Toaster /> {/* Add Toaster here */}
