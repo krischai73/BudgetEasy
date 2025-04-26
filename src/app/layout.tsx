@@ -15,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning> {/* Add suppressHydrationWarning here */}
-      <body className={`${GeistSans.variable} font-sans antialiased`}> {/* Removed GeistMono variable */}
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${GeistSans.variable} font-sans antialiased`}>
         {children}
-        <Toaster /> {/* Add Toaster here */}
+        <Toaster />
       </body>
     </html>
   );
