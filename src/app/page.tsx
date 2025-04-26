@@ -1,13 +1,13 @@
 'use client';
 
 import * as React from 'react';
-import { CategoryList } from '@/components/dashboard/category-list';
-import { SpendingPieChart } from '@/components/dashboard/spending-pie-chart';
-import { BudgetProgressBars } from '@/components/dashboard/budget-progress-bars';
-import { AddExpenseForm } from '@/components/dashboard/add-expense-form';
-import { ExpenseList } from '@/components/dashboard/expense-list';
-import { Skeleton } from "@/components/ui/skeleton";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"; // Added CardDescription import
+import { CategoryList } from '@/components/dashboard/category-list'; // Verify alias
+import { SpendingPieChart } from '@/components/dashboard/spending-pie-chart'; // Verify alias
+import { BudgetProgressBars } from '@/components/dashboard/budget-progress-bars'; // Verify alias
+import { AddExpenseForm } from '@/components/dashboard/add-expense-form'; // Verify alias
+import { ExpenseList } from '@/components/dashboard/expense-list'; // Verify alias
+import { Skeleton } from "@/components/ui/skeleton"; // Verify alias
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"; // Verify alias
 import {
     getCategories,
     getExpenses,
@@ -20,8 +20,8 @@ import {
     updateExpense,
     deleteExpense,
     updateBudgetGoal,
-} from '@/lib/data-service';
-import type { Category, Expense, BudgetGoal, SpendingByCategory } from '@/lib/types';
+} from '@/lib/data-service'; // Verify alias
+import type { Category, Expense, BudgetGoal, SpendingByCategory } from '@/lib/types'; // Verify alias
 import { PiggyBank, DollarSign } from 'lucide-react';
 
 
@@ -32,6 +32,13 @@ export default function BudgetEasyDashboard() {
   const [spendingByCategory, setSpendingByCategory] = React.useState<SpendingByCategory[]>([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState<string | null>(null);
+  const [isClient, setIsClient] = React.useState(false); // State to track client-side mount
+
+  React.useEffect(() => {
+    // Set isClient to true only after the component mounts on the client
+    setIsClient(true);
+  }, []);
+
 
   const fetchData = React.useCallback(async () => {
     setIsLoading(true);
@@ -143,7 +150,8 @@ export default function BudgetEasyDashboard() {
 
 
   // --- Loading State ---
-  if (isLoading) {
+  // Render skeleton only on the client after mount to avoid hydration mismatch
+  if (!isClient || isLoading) {
     return (
       <div className="container mx-auto p-4 md:p-8 space-y-8">
         <h1 className="text-3xl font-bold text-primary flex items-center gap-2">
