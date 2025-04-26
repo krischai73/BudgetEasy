@@ -7,7 +7,7 @@ import { BudgetProgressBars } from '@/components/dashboard/budget-progress-bars'
 import { AddExpenseForm } from '@/components/dashboard/add-expense-form';
 import { ExpenseList } from '@/components/dashboard/expense-list';
 import { Skeleton } from "@/components/ui/skeleton";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"; // Added CardDescription import
 import {
     getCategories,
     getExpenses,
@@ -236,4 +236,3 @@ export default function BudgetEasyDashboard() {
     </div>
   );
 }
-
